@@ -1,7 +1,9 @@
 const ItemReducer = (data,action) => {
     switch (action.type) {
         case 'initialize':{
-            return [...action.payload]
+            return [
+                ...action.payload
+            ];
         }
         case 'add' : {
             return [

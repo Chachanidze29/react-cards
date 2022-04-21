@@ -1,18 +1,25 @@
 import './App.css';
 import CardList from "./components/CardList/CardList";
-import dummyData from "./dummyData/data";
 import React, {useEffect, useReducer} from "react";
 import {ItemContextDispatch} from "./contexts/ItemContext";
 import reducer from "./reducers/ItemReducer";
+import axios from "axios";
 
 function App() {
-    const [data,dispatch] = useReducer(reducer,dummyData);
+    const [data,dispatch] = useReducer(reducer,[]);
 
     useEffect(()=> {
-        fetch("https://jsonplaceholder.typicode.com/users")
-            .then(res => res.json())
-            .then(data => console.log(data))
-    },[])
+        const fetchData = async ()=> {
+            const response = await axios.get(`https://jsonplaceholder.typicode.com/users`);
+            dispatch({
+                type:'initialize',
+                payload:response.data
+            })
+        }
+
+        fetchData()
+            .catch(err=>console.log(err))
+    },[]);
 
     return (
         <ItemContextDispatch.Provider value={dispatch}>

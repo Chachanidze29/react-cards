@@ -5,7 +5,7 @@ import {CardContainer} from "./CardStyles";
 
 const imageUrl = "https://otakukart.com/wp-content/uploads/2021/12/lenore-f.jpg";
 
-const Card = ({cardData:{id,name,phone,email,address,postalZip,region,country}}) => {
+const Card = ({cardData:{id,name,phone,email,address}}) => {
     const [isFrontShown,setIsFrontShown] = useState(true);
 
     return (
@@ -14,11 +14,8 @@ const Card = ({cardData:{id,name,phone,email,address,postalZip,region,country}})
             <CardBack isFrontShown={isFrontShown}
                        id={id}
                        name={name}
-                       postalZip={postalZip}
                        address={address}
                        email={email}
-                       region={region}
-                       country={country}
                        phone={phone}
             />
         </CardContainer>
